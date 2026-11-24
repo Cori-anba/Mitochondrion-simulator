@@ -1,0 +1,11 @@
+# 备课参考资料（网页不依赖，不纳入仓库）
+整体思路.docx
+1.jpg
+DeepSeek对话记录.txt
+聊天记录.txt
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

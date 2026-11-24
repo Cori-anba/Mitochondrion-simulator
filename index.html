@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#060b11" />
+  <title>线粒体 · 能量工厂 | 交互式结构机制演示</title>
+  <meta name="description" content="面向高中生物课堂的线粒体交互式教学网页：结构辨识、电子传递链、化学渗透实时模拟。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23060B11'/%3E%3Cellipse cx='16' cy='16' rx='12' ry='8' fill='none' stroke='%234DE0D2' stroke-width='1.6'/%3E%3Cpath d='M8 18c2.5-5 5 5 7.5 0s5 5 7.5 0' fill='none' stroke='%234DE0D2' stroke-width='1.4'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="bg-fx" aria-hidden="true">
+    <div class="bg-glow bg-glow--a"></div>
+    <div class="bg-glow bg-glow--b"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <div class="app">
+    <header class="topbar">
+      <button class="brand" data-view="1" aria-label="回到第一层：整体结构">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40">
+            <ellipse cx="20" cy="20" rx="17" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".9"/>
+            <path d="M9 22c2.6-5.2 5 5.2 7.6 0s5 5.2 7.6 0 4.6-1.2 5.8-2.4" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".65"/>
+            <circle cx="20" cy="20" r="1.9" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>线粒体 · 能量工厂</strong>
+          <small>MITOCHONDRION / INTERACTIVE</small>
+        </span>
+      </button>
+
+      <nav class="steps" aria-label="课程章节">
+        <button class="step is-active" data-view="1" aria-current="step">
+          <span class="step-num">01</span><span class="step-label">整体结构</span>
+        </button>
+        <span class="step-sep" aria-hidden="true"></span>
+        <button class="step" data-view="2">
+          <span class="step-num">02</span><span class="step-label">嵴与复合体</span>
+        </button>
+        <span class="step-sep" aria-hidden="true"></span>
+        <button class="step" data-view="3">
+          <span class="step-num">03</span><span class="step-label">化学渗透</span>
+        </button>
+      </nav>
+
+      <button class="btn-ghost btn-fullscreen" id="btn-fullscreen" title="全屏演示（快捷键 F）">
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M7 3H3v4M13 3h4v4M7 17H3v-4M13 17h4v-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>全屏演示</span>
+        <kbd>F</kbd>
+      </button>
+    </header>
+
+    <main class="views">
+      <!-- ================= 第一层 ================= -->
+      <section class="view is-active" id="view-1" data-view-id="1" aria-labelledby="title-1">
+        <div class="view-head">
+          <p class="kicker"><span class="kicker-dot"></span>第一层 · 宏观结构<span class="kicker-sep">/</span>导入新课</p>
+          <h1 id="title-1">先看清线粒体的模样</h1>
+          <p class="lede">线粒体是细胞的“能量工厂”。把鼠标移到图上，点一点发光的标记，看看每一层膜各自负责什么。</p>
+        </div>
+
+        <div class="layout layout--hero">
+          <div class="stage" id="stage-1">
+            <div class="stage-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="stage-canvas" id="svg-1"></div>
+            <div class="stage-hud"><span class="hud-dot"></span>剖面示意 · ×3 000</div>
+          </div>
+          <aside class="panel" id="panel-1" aria-live="polite"></aside>
+        </div>
+      </section>
+
+      <!-- ================= 第二层 ================= -->
+      <section class="view" id="view-2" data-view-id="2" aria-labelledby="title-2">
+        <div class="view-head">
+          <p class="kicker"><span class="kicker-dot"></span>第二层 · 微观结构<span class="kicker-sep">/</span>探究一</p>
+          <h1 id="title-2">嵴上藏着什么？</h1>
+          <p class="lede">内膜折叠成嵴，上面排布着电子传递链和 ATP 合酶。点击每一个“零件”，看它负责哪一步。</p>
+        </div>
+
+        <div class="layout layout--hero">
+          <div class="stage" id="stage-2">
+            <div class="stage-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="stage-canvas" id="svg-2"></div>
+            <div class="stage-hud"><span class="hud-dot"></span>内膜放大 · ×30 000</div>
+          </div>
+          <aside class="panel" id="panel-2" aria-live="polite"></aside>
+        </div>
+      </section>
+
+      <!-- ================= 第三层 ================= -->
+      <section class="view" id="view-3" data-view-id="3" aria-labelledby="title-3">
+        <div class="view-head view-head--row">
+          <div>
+            <p class="kicker"><span class="kicker-dot"></span>第三层 · 动态机制<span class="kicker-sep">/</span>探究二</p>
+            <h1 id="title-3">质子回流，如何驱动 ATP 合成</h1>
+          </div>
+          <button class="btn-ghost" id="btn-theory">
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <circle cx="10" cy="10" r="7.2" fill="none" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M10 9v5M10 6.2v.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span>机制小结</span>
+          </button>
+        </div>
+
+        <div class="sim-layout">
+          <aside class="control-panel">
+            <div class="cp-block">
+              <div class="cp-title">情景预设<span>一键切换</span></div>
+              <div class="presets" id="presets"></div>
+            </div>
+
+            <div class="cp-block">
+              <div class="cp-title">参数调节</div>
+
+              <div class="control-row">
+                <div class="control-label"><span>质子泵活性</span><b id="pump-val">100<small>%</small></b></div>
+                <input class="range" type="range" id="pump" min="0" max="100" step="1" value="100" aria-label="质子泵活性百分比" />
+              </div>
+
+              <div class="control-row">
+                <div class="control-label"><span>电子供体浓度</span></div>
+                <div class="seg" data-key="donor" role="group" aria-label="电子供体浓度">
+                  <button class="is-on" data-value="high">高</button>
+                  <button data-value="low">低</button>
+                </div>
+              </div>
+
+              <div class="control-row">
+                <div class="control-label"><span>内膜通透性</span></div>
+                <div class="seg" data-key="leak" role="group" aria-label="内膜通透性">
+                  <button class="is-on" data-value="intact">完整</button>
+                  <button data-value="leaky">有孔</button>
+                </div>
+              </div>
+
+              <div class="control-row">
+                <div class="control-label"><span>ATP 合酶</span></div>
+                <div class="seg" data-key="synthase" role="group" aria-label="ATP 合酶状态">
+                  <button class="is-on" data-value="normal">正常</button>
+                  <button data-value="inhibited">抑制</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="cp-block cp-block--hint">
+              <p>拖动参数，观察 <b>质子梯度</b>、<b>转子转速</b> 与 <b>ATP 产量</b> 如何连锁变化。</p>
+              <button class="btn-text" id="btn-reset">恢复默认</button>
+            </div>
+          </aside>
+
+          <div class="sim-main">
+            <div class="stat-strip">
+              <div class="stat-card">
+                <span class="stat-label">质子梯度</span>
+                <div class="stat-main"><b id="stat-gradient">高</b></div>
+                <div class="meter"><i id="meter-gradient"></i></div>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label">转子转速</span>
+                <div class="stat-main"><b id="stat-rotor">快</b></div>
+                <div class="meter"><i id="meter-rotor"></i></div>
+              </div>
+              <div class="stat-card stat-card--atp">
+                <span class="stat-label">ATP 产量</span>
+                <div class="stat-main"><b id="stat-atp">高</b><small id="atp-rate">0.0 /s</small></div>
+                <div class="meter"><i id="meter-atp"></i></div>
+              </div>
+            </div>
+
+            <div class="stage stage--sim">
+              <div class="stage-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <canvas id="sim-canvas" role="img" aria-label="质子跨膜回流与 ATP 合成的实时模拟动画"></canvas>
+              <div class="stage-hud"><span class="hud-dot"></span>实时模拟 · 非定量示意</div>
+            </div>
+
+            <div class="feedback">
+              <div class="cause" id="cause-chain" aria-live="polite"></div>
+              <div class="feedback-row">
+                <p class="feedback-text" id="feedback-text">电子供体充足、泵送正常：质子被持续泵到膜间隙，再经涡轮机回流，ATP 稳定合成。</p>
+              </div>
+              <p class="note" id="note"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="modal" id="theory-dialog" aria-labelledby="theory-title">
+    <div class="modal-inner">
+      <header class="modal-head">
+        <div>
+          <p class="kicker"><span class="kicker-dot"></span>机制小结</p>
+          <h2 id="theory-title">把“化学渗透”想成一次水力发电</h2>
+        </div>
+        <button class="modal-x" data-close aria-label="关闭">×</button>
+      </header>
+      <ol class="modal-steps">
+        <li><b>01 蓄水</b><p>电子传递链（复合体Ⅰ、Ⅲ、Ⅳ）利用电子释放的能量，把 H⁺ 从基质泵到膜间隙。</p></li>
+        <li><b>02 形成水位差</b><p>膜间隙 H⁺ 浓度升高、基质 H⁺ 浓度降低，形成跨内膜的质子梯度——这就是被“存起来”的能量。</p></li>
+        <li><b>03 放水</b><p>H⁺ 顺梯度回流，且只能通过 ATP 合酶的通道；流动推动转子旋转。</p></li>
+        <li><b>04 发电</b><p>转动的 F1 头部催化 ADP + Pi → ATP。能量从“电子”变成“梯度”，再变成“ATP”。</p></li>
+      </ol>
+      <p class="modal-note">关键提醒：电子传递链并不直接制造 ATP，中间先用质子梯度把能量“存”了一次。</p>
+    </div>
+  </dialog>
+
+  <noscript><p class="noscript">这个页面需要启用 JavaScript 才能交互。</p></noscript>
+
+  <script src="js/content.js"></script>
+  <script src="js/level1.js"></script>
+  <script src="js/level2.js"></script>
+  <script src="js/level3.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
