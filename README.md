@@ -4,6 +4,9 @@
 
 纯 HTML / CSS / JavaScript 编写，**没有构建步骤、没有外部依赖、不需要联网**。双击 `index.html` 就能用，也可以直接部署到 GitHub Pages。
 
+> **在线演示**：<https://cori-anba.github.io/Mitochondrion-simulator/>
+> **仓库**：<https://github.com/Cori-anba/Mitochondrion-simulator>
+
 ![第一层：整体结构](assets/preview-level1.jpg)
 ![第二层：嵴与复合体](assets/preview-level2.jpg)
 ![第三层：化学渗透模拟](assets/preview-level3.jpg)
@@ -42,6 +45,8 @@
 ## 部署到 GitHub Pages（生成链接发给同学）
 
 网站是纯静态文件，`index.html` 就是入口。
+
+> 本仓库已经开启 Pages（`main` 分支 / 根目录）。之后每次 `git push` 到 `main`，GitHub 会自动重新构建并更新线上页面，通常 10–60 秒生效。
 
 ### 方法一：网页上传
 
